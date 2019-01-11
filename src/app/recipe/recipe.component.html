@@ -1,0 +1,82 @@
+<div jh-container>
+
+  <div class="jumbotron jumbotron-fluid jh-jumbo">
+      <div class="container">
+        <h1 class="display-3">Never forget your favorite quotes</h1>
+        <p class="lead">Click the button below to get started saving your favorite quotes in a convienent list!</p>
+        <p> If you need inspiration check out our home page for featured inspirational speakers</p>
+      </div>
+    </div>
+    
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary jh-add-btn" data-toggle="modal" data-target="#exampleModalCenter">
+  Add a Quote
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Input your quote below to save to your list</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <form>
+              <div class="form-row jh-space">
+        
+                <div class="col-md-5">
+                  <textarea rows="4" type="text" name="quote" id="quote" [(ngModel)]="newTtt.quote" placeholder="quote" class="form-control"></textarea>
+                </div>
+                <div class="col-md-5">
+                  <input name="author" id="author" [(ngModel)]="newTtt.author" placeholder="author" class="form-control"
+                    id="author">
+                </div>
+                <div class="col-md-2">
+                </div>
+              </div>
+            </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" (click)="create()">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+  <hr>
+<div class="container">
+  <table class="table">
+    <tbody>
+      <div class="card ttt jh-card col-sm-6" (dblclick)="editTtt(ttt)" *ngFor="let ttt of tttsList">
+        <ng-container *ngIf="!editTtts.includes(ttt); else editTD">
+            <td>{{ttt.quote}}</td>
+            <td>{{ttt.author}}</td>
+            <td>{{ttt.date | date}}</td>
+          </ng-container>
+    
+          <ng-template #editTD>
+              <td><input type="text" name="quote" id="quote" (keypress)="submitTtt($event, ttt)" [(ngModel)]="ttt.quote" placeholder="Quote" class="form-control"></td>
+              <td><input type="text" name="author" id="author" (keypress)="submitTtt($event, ttt)" [(ngModel)]="ttt.author" placeholder="Author"
+                  class="form-control"></td>
+              <td>{{ttt.date | date}}</td>
+              <td>
+              </td>
+          </ng-template>
+    
+          <td class="o">
+            <button class="btn btn-primary" (click)="editTtt(ttt)">
+                <i  class="fa fa-pencil"></i>
+              </button>
+            <button class="btn btn-danger" (click)="deleteTtt(ttt)">
+                <i  class="fa fa-trash"></i>
+              </button>
+          </td>
+      </div>
+    </tbody>
+  </table>
+</div>
+</div>

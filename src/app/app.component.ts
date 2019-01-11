@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+// import { Response } from './@angular/http';
+import { RecipeService } from './services/recipe.service';
+import Recipe from './models/recipe.model';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +10,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'recipe-angular';
+
+  ngOnInit() {
+  }
 }
+
